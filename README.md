@@ -2,9 +2,9 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## run json-server
 
-In the project directory, you can run:
+./node_modules/json-server/lib/cli/bin.js server-json -p 3333 -w
 
 ### `npm start`
 
