@@ -36,32 +36,18 @@
       "message": "23232323"
     },
     {
-      "channel": "email",
-      "trigger": "nova_chave_pix",
-      "timer": "20:25",
-      "message": "Oi, será que podemos falar sobre sua conta",
+      "channel": "sms",
+      "trigger": "recarregou_celular",
+      "timer": "00:01",
+      "message": "Você fez uma recarga de R$ 20,00 para a operador Tim",
       "id": 1631313726739
     },
     {
-      "channel": "asdfa",
-      "trigger": "asdfas",
-      "timer": "asdfa",
-      "message": "asdfasd",
-      "id": 1631313726740
-    },
-    {
-      "channel": "asdfa",
-      "trigger": "asdfa",
-      "timer": "adfa",
-      "message": "asdfa",
-      "id": 1631313726741
-    },
-    {
       "channel": "whatsapp",
-      "trigger": "Modal_funcioanndo",
-      "timer": "16:24",
-      "message": "Gostaria de avisar a todos que agora o modal está funcionando",
-      "id": 1631313726742
+      "trigger": "consultou_saldo",
+      "timer": "17:00",
+      "message": "Gostaríamos de saber se está tudo certo com sua conta, fica a vontade para não responder.",
+      "id": 1631313726740
     }
   ],
   "channels": [

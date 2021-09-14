@@ -8,13 +8,30 @@ function NewMessage() {
     const [viewModal, setViewModal] = useState(false);
     const [disable, setDisable] = useState(false)
 
-    const [id, setId] = useState('1312132');
+    const [listTriggers, setListTriggers] = useState([]);
+    const [listchannels, setListChannels] = useState([]);
+
+    const [id, setId] = useState('');
     const [channel, setChannel] = useState('');
     const [trigger, setTrigger] = useState('');
     const [timer, setTimer] = useState('')
     const [newMessage, setNewMessage] = useState('');
         
-    console.log(viewModal);
+    useEffect(() => {
+        async function listTrigger(){
+            let res = await api.get('/triggers');
+            setListTriggers(res.data);
+        }
+
+        async function listchannel(){
+            let res = await api.get('./channels');
+            setListChannels(res.data);
+        }
+
+        listTrigger();
+        listchannel();
+        
+    }, [])
 
     const handleAddMessage = async (event) => {
         event.preventDefault();
@@ -66,23 +83,26 @@ function NewMessage() {
                     </div>
 
                     <div className="col-md-4">
-                        <input
-                            class="form-control"
-                            type="text"
-                            disabled={disable}
-                            value={trigger}
-                            onChange={e => {setTrigger(e.target.value)}}
-                        />
+                        <select value={trigger} onChange={(e) => setTrigger(e.target.value)}>
+                            <option></option>
+                            {listTriggers.map((i) => 
+                                <option 
+                                    value={i.name} 
+                                    key={i.id}
+                                    >
+                                    {i.name}
+                                </option>
+                            )}
+                        </select>
                     </div>
 
                     <div className="col-md-4">
-                        <input
-                            class="form-control"
-                            type="text"
-                            disabled={disable}
-                            value={channel}
-                            onChange={e => setChannel(e.target.value)}
-                        />
+                        <select value={channel} onChange={(e) => setChannel(e.target.value)}>
+                            <option></option>   
+                            {listchannels.map((i) => (
+                                <option value={i.name} key={i.id}>{i.name}</option>
+                            ))}
+                        </select>
                     </div>
 
                     <div className="col-md-4">
