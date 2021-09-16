@@ -48,6 +48,55 @@
       "timer": "17:00",
       "message": "Gostaríamos de saber se está tudo certo com sua conta, fica a vontade para não responder.",
       "id": 1631313726740
+    },
+    {
+      "channel": "sms",
+      "trigger": "recarregou_celular",
+      "timer": "10:00",
+      "message": "Oba, notamos que você fez uma recarga no seu celular. Nós da Conta Zap e da operadora Oi agradecemos.",
+      "id": 1631313726741
+    },
+    {
+      "channel": "email",
+      "trigger": "falou_com_atendimento",
+      "timer": "13:20",
+      "message": "Não Responda, este é um e-mail automático",
+      "id": 1631313726742
+    },
+    {
+      "channel": "sms",
+      "trigger": "consultou_saldo",
+      "timer": "14:00",
+      "message": "Seu saldo atual é de!",
+      "id": 1631313726743
+    },
+    {
+      "channel": "",
+      "trigger": "",
+      "timer": "",
+      "message": "",
+      "id": 1631313726744
+    },
+    {
+      "channel": "",
+      "trigger": "",
+      "timer": "",
+      "message": "",
+      "id": 1631313726745
+    },
+    {
+      "channel": "email",
+      "trigger": "alterou_dados_pessois",
+      "timer": "17:25",
+      "message": "Testando o yup",
+      "id": 1631313726746
+    },
+    {
+      "channel": "whatsapp",
+      "trigger": "falou_com_atendimento",
+      "timer": "09:35",
+      "message": "Testando com a validação do Yup",
+      "id": 1631313726747
     }
   ],
   "channels": [

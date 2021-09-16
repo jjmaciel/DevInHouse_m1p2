@@ -5,19 +5,42 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider, makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import { CssBaseline } from '@material-ui/core';
 
-import useStyles from './style';
-import headerTheme from '../theme/theme';
+import theme from '../Theme';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    link: {
+      color: '#000000',
+    },
+    
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
+    },
+    zap: {
+        marginRight: 20,
+        fontSize: 20,
+        color: "#ffffff",
+    }
+  }));
 
 
 export default function ButtonAppBar() {
+
     const classes = useStyles();
   
     return (
       <div className={classes.root} >
-        <ThemeProvider theme={headerTheme}>
+        <CssBaseline />
+        <ThemeProvider theme={theme}>
             <AppBar position="static" color="primary">
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">

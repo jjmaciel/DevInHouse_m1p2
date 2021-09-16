@@ -14,17 +14,17 @@ function Messages() {
     return (
         <Container className={classes.container}>
             
-            <div class="row justify-content-md-center">
+            <div className="row justify-content-md-center">
                 <div className="col-md-8">
                     <div className="row">
                         <div className="col-md-6">
                             Mensagem
                         </div>
                         <div className="col-md-3">
-                            <button type="button" class="btn btn-outline-secondary" onClick={() => setViewForm(true)} >Pequisar</button>
+                            <button type="button" className="btn btn-outline-secondary" onClick={() => setViewForm(true)} >Pequisar</button>
                         </div>
                         <div className="col-md-3">
-                            <button type="button" class="btn btn-outline-secondary" onClick={() => setViewForm(false)}>Nova Mensagem</button>
+                            <button type="button" className="btn btn-outline-secondary" onClick={() => setViewForm(false)}>Nova Mensagem</button>
                         </div>
                     </div>
                     <hr/>

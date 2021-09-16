@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import * as yup from 'yup';
 import api from '../../Services/Api';
-import TransitionsModal from '../../components/theme/modal';
+import Swal from 'sweetalert2';
 
 
 function NewMessage() {
 
-    const [viewModal, setViewModal] = useState(false);
     const [disable, setDisable] = useState(false)
 
     const [listTriggers, setListTriggers] = useState([]);
@@ -33,11 +33,20 @@ function NewMessage() {
         
     }, [])
 
+    const schema = yup.object().shape({
+        channel : yup.string().required('Selecione um Canal'),
+        trigger : yup.string().required('Selecione um Gatilho'),
+        timer: yup.string().required('Você precisa digitar um Timer').min(4, 'Tempo deve ter mo mínimo 5 caracteres'),
+        newMessage: yup.string().required('Você precisa digitar uma mensagem').min(2, 'Mensagem deve ter mais de 2 caracteres'),
+    });
+
     const handleAddMessage = async (event) => {
         event.preventDefault();
         setDisable(true);
                 
         try {
+            await schema.validate({channel: channel, trigger: trigger, timer: timer, newMessage: newMessage});
+
             const req = await api.post('/messages', {
                 channel: channel,
                 trigger: trigger,
@@ -46,30 +55,28 @@ function NewMessage() {
             });
 
             setId(req.data.id);
-            setViewModal(true);
             setDisable(false);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Mensagem Salva com Sucesso',
+                showConfirmButton: false,
+                timer: 1500
+              })
             setTrigger('');
             setChannel('');
             setTimer('');
             setNewMessage('');     
         } catch (error) {
-            console.log("Erro durante o armazenamento");
-            console.log(error);
+            setDisable(false);
+            Swal.fire(error.errors[0]);
         }
 
     }
 
     return (
         <>
-            {viewModal == true &&
-            <div onClick={() => setViewModal(false)}>
-                <TransitionsModal 
-                    textOn={"Mensagem Salva com Sucesso!"} 
-                    textTwo={`Mensagem salva no ID: ${id}`}
-                />
-            </div>
-            }
-
+            
             <form onSubmit={handleAddMessage}>
                 <div className="row">
                     <div className="col-md-4">
@@ -83,7 +90,7 @@ function NewMessage() {
                     </div>
 
                     <div className="col-md-4">
-                        <select value={trigger} onChange={(e) => setTrigger(e.target.value)}>
+                        <select className="form-select" value={trigger} onChange={(e) => setTrigger(e.target.value)}>
                             <option></option>
                             {listTriggers.map((i) => 
                                 <option 
@@ -97,7 +104,7 @@ function NewMessage() {
                     </div>
 
                     <div className="col-md-4">
-                        <select value={channel} onChange={(e) => setChannel(e.target.value)}>
+                        <select className="form-select" value={channel} onChange={(e) => setChannel(e.target.value)}>
                             <option></option>   
                             {listchannels.map((i) => (
                                 <option value={i.name} key={i.id}>{i.name}</option>
@@ -107,7 +114,7 @@ function NewMessage() {
 
                     <div className="col-md-4">
                         <input
-                            class="form-control"
+                            className="form-control"
                             type="text"
                             disabled={disable}
                             value={timer}
@@ -124,7 +131,7 @@ function NewMessage() {
                     </div>
                     <div className="col-md-12">
                         <textarea
-                            class="form-control"
+                            className="form-control"
                             disabled={disable}
                             value={newMessage}
                             onChange={e => setNewMessage(e.target.value)}
