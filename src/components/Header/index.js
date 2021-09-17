@@ -61,7 +61,7 @@ function ButtonAppBar(props) {
 
             </Typography>
             <Link className={classes.link} to="/">
-              <Button color="inherit">Logout</Button>
+              <Button color="inherit" onClick={() => window.location.reload()}>Logout</Button>
             </Link>
           </Toolbar>
         </AppBar>

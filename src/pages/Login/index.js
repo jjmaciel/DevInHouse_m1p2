@@ -21,7 +21,7 @@ function Login(props) {
         try{
             
             const getUser = await api.get(`/login/?user=${user}`);
-            if (getUser.data[0].password == password && password != ''){
+            if (getUser.data.length > 0 && getUser.data[0].password == password && password != ''){
                 props.setLogin(user);
                 history.push("/dashboard");
             }else {

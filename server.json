@@ -83,6 +83,13 @@
       "timer": "09:35",
       "message": "Testando com a validação do Yup",
       "id": 1631313726747
+    },
+    {
+      "channel": "whatsapp",
+      "trigger": "consultou_saldo",
+      "timer": "10:30",
+      "message": "Olá, vimos que vc consultou seu saldo. Está tudo certo com sua conta?",
+      "id": 1631313726748
     }
   ],
   "channels": [
@@ -137,7 +144,6 @@
       "name": "falou_com_atendimento"
     }
   ],
-
   "login": [
     {
       "id": 1,
