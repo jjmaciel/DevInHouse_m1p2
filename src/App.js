@@ -1,17 +1,39 @@
 import { BrowserRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Routes from './Routes';
 import Header from './components/Header';
+import Login from './pages/Login';
 
-function App() {
+function App(props) {
+
+  console.log(props.user);
+  console.log(props.isLogued);
 
   return (
-      <BrowserRouter>
-      
-        <Header/>
-        <Routes/>
+    <BrowserRouter>
+      {props.isLogued === true &&
+        <>
+          <Header />
+          <Routes />
+        </>
         
-      </BrowserRouter>
+      }
+      
+      {props.isLogued === false &&
+        <Login />
+      }
+      
+    </BrowserRouter>
   );
 }
 
-export default App;
+const stateToProps = (state) => {
+  return {
+    user: state.login.user,
+    isLogued: state.login.isLogued
+  }
+}
+
+
+
+export default connect(stateToProps)(App);

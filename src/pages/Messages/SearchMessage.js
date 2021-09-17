@@ -13,26 +13,27 @@ function SearchMessage() {
     const [timer, setTimer] = useState('');
 
 
+    async function hadleGetMessages() {
+        try {
+            let res = await api.get('/messages');
+            setListMessages(res.data);
+        } catch (error) {
+            console.log('Erros econtrados no json-server');
+            console.log(error);
+        }
+    };
+
+    async function listTrigger() {
+        let res = await api.get('/triggers');
+        setListTriggers(res.data);
+    }
+
+    async function listchannel() {
+        let res = await api.get('./channels');
+        setListChannels(res.data);
+    }
+
     useEffect(() => {
-        async function hadleGetMessages() {
-            try {
-                let res = await api.get('/messages');
-                setListMessages(res.data);
-            } catch (error) {
-                console.log('Erros econtrados no json-server');
-                console.log(error);
-            }
-        };
-
-        async function listTrigger() {
-            let res = await api.get('/triggers');
-            setListTriggers(res.data);
-        }
-
-        async function listchannel() {
-            let res = await api.get('./channels');
-            setListChannels(res.data);
-        }
 
         hadleGetMessages();
         listTrigger();
@@ -67,6 +68,12 @@ function SearchMessage() {
 
     const handleModal = (mes) => {
         Swal.fire(mes);
+    }
+
+    const handleClearFilter = () => {
+        setTimer('');
+        setTrigger('');
+        setChannel('');
     }
 
     return (
@@ -107,9 +114,14 @@ function SearchMessage() {
                         </select>
                     </div>
 
-                    <div className="col-md-4">
+                    <div className="col-md-2">
                         <input className="form-control" type="text" value={timer} onChange={(e) => setTimer(e.target.value)} />
                     </div>
+
+                    <div className="col-md-2">
+                      <button type="button" className="btn btn-outline-warning" onClick={() => handleClearFilter()} >Limpar Filtro</button>
+                    </div>
+
                 </div>
             </form>
             <br />

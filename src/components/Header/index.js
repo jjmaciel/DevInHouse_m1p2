@@ -12,60 +12,63 @@ import { CssBaseline } from '@material-ui/core';
 import theme from '../Theme';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    link: {
-      color: '#000000',
-    },
-    
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    title: {
-      flexGrow: 1,
-    },
-    zap: {
-        marginRight: 20,
-        fontSize: 20,
-        color: "#ffffff",
-    }
-  }));
+  root: {
+    flexGrow: 1,
+  },
+  link: {
+    color: '#000000',
+  },
 
-
-export default function ButtonAppBar() {
-
-    const classes = useStyles();
-  
-    return (
-      <div className={classes.root} >
-        <CssBaseline />
-        <ThemeProvider theme={theme}>
-            <AppBar position="static" color="primary">
-                <Toolbar>
-                    <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <Link className={classes.link} to="/">
-                            <MenuIcon />
-                        </Link>
-                    </IconButton>
-
-                    <Typography variant="h6" className={classes.title}>
-                        <span className={classes.zap} >ZAP SYSTEM</span>
-
-                        <Link className={classes.link} to="/dashboard">
-                            <Button color="inherit">Dashboard</Button>
-                        </Link>
-
-                        <Link className={classes.link} to="/messages">
-                            <Button color="inherit">Mensagens</Button>
-                        </Link>
-                        
-                    </Typography>
-
-                    <Button color="inherit">Login</Button>
-                </Toolbar>
-            </AppBar>
-        </ThemeProvider>
-      </div>
-    );
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+  zap: {
+    marginRight: 20,
+    fontSize: 20,
+    color: "#ffffff",
   }
+}));
+
+function ButtonAppBar(props) {
+
+  const classes = useStyles();
+
+  return (
+    <div className={classes.root} >
+      <CssBaseline />
+      <ThemeProvider theme={theme}>
+        <AppBar position="static" color="primary">
+          <Toolbar>
+            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+              <Link className={classes.link} to="/">
+                <MenuIcon />
+              </Link>
+            </IconButton>
+
+            <Typography variant="h6" className={classes.title}>
+              <span className={classes.zap} >ZAP SYSTEM</span>
+
+              <Link className={classes.link} to="/dashboard">
+                <Button color="inherit">Dashboard</Button>
+              </Link>
+
+              <Link className={classes.link} to="/messages">
+                <Button color="inherit">Mensagens</Button>
+              </Link>
+
+            </Typography>
+            <Link className={classes.link} to="/">
+              <Button color="inherit">Logout</Button>
+            </Link>
+          </Toolbar>
+        </AppBar>
+      </ThemeProvider>
+    </div>
+  );
+}
+
+
+export default ButtonAppBar;
