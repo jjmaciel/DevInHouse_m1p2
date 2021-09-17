@@ -71,20 +71,6 @@
       "id": 1631313726743
     },
     {
-      "channel": "",
-      "trigger": "",
-      "timer": "",
-      "message": "",
-      "id": 1631313726744
-    },
-    {
-      "channel": "",
-      "trigger": "",
-      "timer": "",
-      "message": "",
-      "id": 1631313726745
-    },
-    {
       "channel": "email",
       "trigger": "alterou_dados_pessois",
       "timer": "17:25",
